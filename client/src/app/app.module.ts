@@ -21,6 +21,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EffectsModule } from '@ngrx/effects';
 import { ProductEffects } from './store/effects/product.effects';
 import { GeneralEffects } from './store/effects/general.effects';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -31,11 +33,13 @@ import { GeneralEffects } from './store/effects/general.effects';
     ProductDetailsComponent
   ],
   imports: [
-    BrowserModule,
+  BrowserModule,
     CommonModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
+    HttpModule,
     StoreModule.forRoot(reducers, { metaReducers }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     StoreModule.forFeature('products', fromProducts.reducer),

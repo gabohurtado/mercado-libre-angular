@@ -2,3 +2,7 @@
 client/node_modules/
 
 client/\.editorconfig
+
+server/log/
+
+server/node_modules/
