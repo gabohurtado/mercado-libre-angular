@@ -12,17 +12,35 @@ import * as fromGenerals from './store/reducers/generals.reducer';
 // Components
 import { NavbarComponent } from './components/navbar/navbar.component';
 
+import { AppRoutingModule } from './app-routing.module';
+import { HomeComponent } from './components/home/home.component';
+import { CommonModule } from '@angular/common';
+import { ProductsComponent } from './components/products/products.component';
+import { ProductDetailsComponent } from './components/product-details/product-details.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { EffectsModule } from '@ngrx/effects';
+import { ProductEffects } from './store/effects/product.effects';
+import { GeneralEffects } from './store/effects/general.effects';
+
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent
+    NavbarComponent,
+    HomeComponent,
+    ProductsComponent,
+    ProductDetailsComponent
   ],
   imports: [
     BrowserModule,
+    CommonModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
     StoreModule.forRoot(reducers, { metaReducers }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     StoreModule.forFeature('products', fromProducts.reducer),
     StoreModule.forFeature('generals', fromGenerals.reducer),
+    EffectsModule.forRoot([ProductEffects, GeneralEffects]),
   ],
   providers: [],
   bootstrap: [AppComponent]

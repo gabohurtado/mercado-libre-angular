@@ -1,0 +1,89 @@
+// My vars
+@import '../../../assets/scss/_vars';
+
+.media {
+    span {
+        border-radius: 4px;
+    }
+
+    img {
+        @include thumbnail-image;
+        margin: $space1;
+    }
+
+    .media-body {
+        margin-top: $space2;
+
+        h5.price {
+            @include text-size(24);
+            margin-bottom: $space2;
+            display: inline-block;
+        }
+        .shipping {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background: url($shipping) no-repeat;
+            margin-left: 10px;
+        }
+    }
+
+    h4.title {
+        @include text-size(18);
+    }
+
+    .place {
+        position: relative;
+        top: $space2;
+        @include text-size(12)
+    }
+
+    padding-bottom: $space1;
+    border-bottom: solid 1px $light-gray;
+}
+
+.media-loading {
+    padding: $space1;
+
+    .thumbnail {
+        background-color: $light-gray;
+        width: 148px;
+        height: 148px;
+        border-radius: 4px;
+        display: inline-block;
+        animation: flicker 2s infinite ease;
+    }
+
+    h5.price {
+        height: 20px;
+        border-radius: 4px;
+        background-color: $light-gray;
+        animation: flicker 2s infinite ease;
+    }
+
+    .place {
+        height: 10px;
+        border-radius: 4px;
+        margin-top: $space1;
+        background-color: $light-gray;
+        animation: flicker 2s infinite ease;
+    }
+}
+
+@keyframes flicker {
+    50% {
+        background-color: #f1f1f1;
+    }
+
+    50% {
+        background-color: $loading-gray;
+    }
+}
+
+.no-styles-link {
+    text-decoration: none !important;
+    color: #000000;
+    &:hover {
+        color: $medium-gray;
+    }
+}

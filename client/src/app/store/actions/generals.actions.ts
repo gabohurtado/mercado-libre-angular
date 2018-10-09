@@ -1,11 +1,17 @@
 import { Action } from '@ngrx/store';
 
 export enum GeneralsActionTypes {
-  LoadGeneralss = '[Generals] Load Generalss'
+  StartLoading = '[Generals] Start Loading',
+  EndLoading = '[Generals] End Loading',
 }
 
-export class LoadGeneralss implements Action {
-  readonly type = GeneralsActionTypes.LoadGeneralss;
+export class StartLoading implements Action {
+  readonly type = GeneralsActionTypes.StartLoading;
 }
 
-export type GeneralsActions = LoadGeneralss;
+export class EndLoading implements Action {
+  readonly type = GeneralsActionTypes.EndLoading;
+}
+
+export type GeneralsActions = StartLoading
+| EndLoading;

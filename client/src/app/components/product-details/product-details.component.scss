@@ -1,0 +1,94 @@
+// My vars
+@import '../../../assets/scss/_vars';
+
+.container-details {
+    padding: $space2;
+    .details {
+        @include text-size(14);
+        padding: 0;
+        button {
+            color: #fff;
+            background-color: $blue;
+            border-color: $blue;
+            margin-top: $space2;
+        }
+    }
+    .col-md-9{
+        padding: 0;
+    }
+    .image img {
+        width: 680px;
+    }
+    h5.title{
+        @include text-size(24);
+        margin-top: $space1;
+    }
+    h3.price {
+        @include text-size(46);
+        margin-top: $space2;
+    }
+    .product-description {
+        @include text-size(28);
+    }
+    .description-container {
+        padding: $space2 0;
+        p {
+            margin: $space2 0;
+        }
+    }
+}
+
+.container-details-loading {
+    padding: $space2;
+
+    .image {
+        height: 300px;
+        max-width: 300px;
+        border-radius: 4px;
+        background-color: $light-gray;
+        animation: flicker 2s infinite ease;
+    }
+    .details{
+        div {
+            margin: 5px;
+            height: 10px;
+            border-radius: 4px;
+            background-color: $light-gray;
+            animation: flicker 2s infinite ease;
+        }
+    }
+    .description-container{
+        margin: $space2 0;
+        padding-left: 0;
+        div.product-description{
+            height: 20px;
+            border-radius: 4px;
+            background-color: $light-gray;
+            animation: flicker 2s infinite ease;
+        }
+        p {
+            height: 50px;
+            margin-top: $space1;
+            background-color: $light-gray;
+            animation: flicker 2s infinite ease;
+        }
+    }
+}
+
+@keyframes flicker {
+    50% {
+        background-color: #f1f1f1;
+    }
+
+    50% {
+        background-color: $loading-gray;
+    }
+}
+
+  @media (min-width: 768px), (max-width: 890px) {
+    .container-details {
+        img {
+            width: 85% !important;
+        }
+    }
+  }
