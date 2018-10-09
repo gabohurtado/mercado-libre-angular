@@ -1,0 +1,43 @@
+// My vars
+@import '../../../assets/scss/_vars';
+
+nav {
+    background-color: $yellow;
+
+    form {
+        button {
+            &:after {
+                @include text-size(25);
+                color: $soft-gray;
+            }
+
+            &:focus {
+                outline: none;
+            }
+
+            background: url($icon_search) no-repeat 10px $light-gray;
+            position: relative;
+            right: 40px;
+            border-left: solid 1px $soft-gray !important;
+
+            height: 30px;
+            margin-top: 4px;
+            cursor: pointer;
+            border: none;
+            width: 35px;
+            border-radius: 0 4px 4px 0;
+        }
+    }
+
+    a.navbar-brand {
+        background: url($logo) no-repeat;
+        width: 56px;
+        height: 37px;
+        margin-right: 0;
+    }
+
+}
+
+input {
+    @include text-size(18);
+}

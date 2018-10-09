@@ -1,0 +1,31 @@
+$yellow: #FFE600;
+$dark-gray: #333333;
+$medium-gray: #666666;
+$soft-gray: #999999;
+$loading-gray: #dadada;
+$light-gray: #EEEEEE;
+$blue: #3483FA;
+$white: #FFFFFF;
+
+$radio: 4px;
+
+$logo: '/assets/img/Logo_ML.png';
+$logo_home: '/assets/img/wp-image-448382072.png';
+$shipping: '/assets/img/ic_shipping.png';
+$icon_search: '/assets/img/ic_Search.png';
+
+@mixin text-size($size) {
+    font-size: #{$size}px !important;
+}
+
+@mixin thumbnail-image {
+    width: 180px;
+    height: 180px;
+    border-radius: 4px;
+}
+
+$space1: 16px;
+$space2: 32px;
+
+// Font-Awesome
+$fa-font-path:        "/assets/fontawesome/webfonts";

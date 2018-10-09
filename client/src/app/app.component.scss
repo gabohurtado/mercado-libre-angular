@@ -1,0 +1,14 @@
+// My vars
+@import '../assets/scss/_vars';
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background-color: $light-gray;
+
+  .container {
+    background-color: $white;
+    border-radius: $radio;
+  }
+}
