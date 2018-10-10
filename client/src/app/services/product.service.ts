@@ -1,6 +1,6 @@
 import { Injectable, Optional, Inject } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { throwError, Observable, of } from 'rxjs';
+import { throwError } from 'rxjs';
 import { tap, catchError } from 'rxjs/internal/operators';
 
 import baseUrl from '../config/config';
@@ -31,13 +31,13 @@ export class ProductService {
     this.store.dispatch(new GeneralsActions.StartLoading);
     console.log('Service', criteria);
 
-    const url = `${this.baseUrl}/search?q=${criteria}`;
+    const url = `${this.baseUrl}/search?q = ${criteria}`;
     console.log(url);
 
     return this.http.get<ResultModel>(url).pipe(
       tap(_ => console.log(`Fetching products`)),
       catchError(error => {
-        this.store.dispatch(new ProductActions.ErrorFetchingProducts(error.message));
+        this.store.dispatch(new ProductActions.ErrorFetchingProducts(`Error consultando el servidor: ${error.message}`));
         return this.handleError(error);
       })
     ).subscribe(result => {
@@ -54,7 +54,10 @@ export class ProductService {
 
     return this.http.get<ResultItemModel>(url).pipe(
       tap(_ => console.log(`Fetching products`)),
-      catchError<any>(this.handleError('getProduct'))
+      catchError(error => {
+        this.store.dispatch(new ProductActions.ErrorShowingDetails(`Error consultando el servidor: ${error.message}`));
+        return this.handleError(error);
+      })
     ).subscribe(result => {
       this.store.dispatch(new ProductActions.SetPathFromRoot(result.path_from_root));
       this.store.dispatch(new ProductActions.ShowDetails(result));
@@ -62,25 +65,14 @@ export class ProductService {
     });
   }
 
-  /**
-   * Handle Http operation that failed.
-   * Let the app continue.
-   * @param operation - name of the operation that failed
-   * @param result - optional value to return as the observable result
-   */
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      console.log('Erroooooooooooooooooooorrrrr', error);
-
-      this.store.dispatch(new ProductActions.ErrorShowingDetails(error.message));
-      this.store.dispatch(new GeneralsActions.EndLoading);
-
-      // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
-
-      // Let the app keep running by returning an empty result.
-      return of(result as T);
-    };
+  private handleError(error: HttpErrorResponse) {
+    this.store.dispatch(new GeneralsActions.EndLoading);
+    console.error(
+      `Backend returned code ${error.status}, ` + `body was: ${error.error}`
+    );
+    return throwError('Error consultando servidor.');
   }
+
+
 
 }

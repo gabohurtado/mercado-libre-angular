@@ -3,5 +3,10 @@
   <app-breadcrumb></app-breadcrumb>
 </header>
 <div class="container col-lg-10 col-md-10 col-sm-10">
+  <div *ngIf="error" class="d-flex justify-content-center align-items-center">
+    <div class="d-inline-block alert alert-danger" role="alert">
+      {{error}}
+    </div>
+  </div>
   <router-outlet></router-outlet>
 </div>

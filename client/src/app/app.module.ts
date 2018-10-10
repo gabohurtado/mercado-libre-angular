@@ -47,7 +47,7 @@ import { isPlatformBrowser } from '@angular/common';
     HttpClientModule,
     HttpModule,
     StoreModule.forRoot(reducers, { metaReducers }),
-    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    StoreDevtoolsModule.instrument(),
     StoreModule.forFeature('products', fromProducts.reducer),
     StoreModule.forFeature('generals', fromGenerals.reducer),
     // EffectsModule.forRoot([ProductEffects, GeneralEffects]),

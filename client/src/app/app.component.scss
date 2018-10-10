@@ -1,8 +1,12 @@
-
 // My vars
 @import '../assets/scss/_vars';
 
-  .container {
-    background-color: $white;
-    border-radius: $radio;
+.container {
+  background-color: $white;
+  border-radius: $radio;
+
+  .alert {
+    position: fixed;
+    top: 100px;
   }
+}
