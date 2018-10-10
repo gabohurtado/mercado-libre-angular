@@ -3,9 +3,9 @@ import {
   ProductsActions,
   ProductsActionTypes
 } from '../actions/products.actions';
-import { ResultModel } from 'src/app/models/ResultModel';
+import { ResultModel } from '../../models/ResultModel';
 import { PathModel } from '../../models/PathModel';
-import { ResultItemModel } from 'src/app/models/ResultItemModel';
+import { ResultItemModel } from '../../models/ResultItemModel';
 
 export interface State {
   result: ResultModel;

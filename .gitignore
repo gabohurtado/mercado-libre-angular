@@ -6,3 +6,7 @@ client/\.editorconfig
 server/log/
 
 server/node_modules/
+
+node_modules/
+
+client/dist/

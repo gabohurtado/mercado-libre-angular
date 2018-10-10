@@ -8,9 +8,9 @@ import * as ProductActions from '../../store/actions/products.actions';
 import * as fromGenerals from '../../store/reducers/generals.reducer';
 import { ProductService } from '../../services/product.service';
 import { Observable, Subscription } from 'rxjs';
-import { ItemModel } from 'src/app/models/ItemModel';
+import { ItemModel } from '../../models/ItemModel';
 import { ResultItemModel } from '../../models/ResultItemModel';
-import { ResultModel } from 'src/app/models/ResultModel';
+import { ResultModel } from '../../models/ResultModel';
 
 @Component({
   selector: 'app-product-details',

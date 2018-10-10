@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import * as fromGenerals from '../../store/reducers/generals.reducer';
-import { CleanPathFromRoot } from 'src/app/store/actions/products.actions';
+import { CleanPathFromRoot } from '../../store/actions/products.actions';
 
 @Component({
   selector: 'app-navbar',

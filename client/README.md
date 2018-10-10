@@ -4,8 +4,8 @@
     NOTE: These syntaxes run from the directory where this README is located
 
   * Build client app
-    `npm install && ng serve`
-    * and navigate to http://localhost:3000
+    `npm install && npm run build:ssr && npm run serve:ssr`
+    * and navigate to http://localhost:4000
 
 
   * Steps to test the apps  

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import * as fromProducts from '../../store/reducers/products.reducer';
-import { ResultModel } from 'src/app/models/ResultModel';
+import { ResultModel } from '../../models/ResultModel';
 import { Store } from '@ngrx/store';
-import { PathModel } from 'src/app/models/PathModel';
+import { PathModel } from '../../models/PathModel';
 
 @Component({
   selector: 'app-breadcrumb',

@@ -25,6 +25,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 
+// Server Side Render SSR
+import { PLATFORM_ID, APP_ID, Inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +39,7 @@ import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.componen
     BreadcrumbComponent
   ],
   imports: [
-  BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'client' }),
     CommonModule,
     AppRoutingModule,
     FormsModule,
@@ -51,4 +55,12 @@ import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.componen
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+    @Inject(APP_ID) private appId: string) {
+    const platform = isPlatformBrowser(platformId) ?
+      'in the browser' : 'on the server';
+    console.log(`Running ${platform} with appId=${appId}`);
+  }
+}

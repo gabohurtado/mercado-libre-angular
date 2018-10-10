@@ -1,7 +1,7 @@
 import { Action } from '@ngrx/store';
 import { PathModel } from '../../models/PathModel';
-import { ResultItemModel } from 'src/app/models/ResultItemModel';
-import { ResultModel } from 'src/app/models/ResultModel';
+import { ResultItemModel } from '../../models/ResultItemModel';
+import { ResultModel } from '../../models/ResultModel';
 
 export enum ProductsActionTypes {
   FetchProducts = '[Products] Fetch Products',
