@@ -40,12 +40,10 @@ export class ProductDetailsComponent implements OnInit {
     this.result$ = this.store.select('products');
     this.resultSub = this.result$.subscribe(res => {
       this.result = res.item;
-      console.log(this.result);
     });
 
     this.generals$ = this.store.select('generals');
     this.generalsSub = this.generals$.subscribe(res => {
-      console.log(res.loading);
       this.loading = res.loading;
     });
   }

@@ -23,7 +23,6 @@ export class BreadcrumbComponent implements OnInit {
   ngOnInit() {
     this.result$ = this.store.select('products');
     this.resultSub = this.result$.subscribe(res => {
-      console.log(res.result);
       this.paths = res.path_from_root;
     });
   }

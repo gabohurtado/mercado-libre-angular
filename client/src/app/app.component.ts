@@ -20,7 +20,6 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.result$ = this.store.select('products');
     this.resultSub = this.result$.subscribe(res => {
-      console.log(res.result);
       this.error = res.error;
     });
   }

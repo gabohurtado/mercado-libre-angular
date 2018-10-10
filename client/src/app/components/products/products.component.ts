@@ -32,20 +32,17 @@ export class ProductsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       this.criteria = params['q'];
-      console.log(this.criteria);
 
       this.productService.fetchProducts(this.criteria);
     });
 
     this.result$ = this.store.select('products');
     this.resultSub = this.result$.subscribe(res => {
-      console.log(res.result);
       this.result = res.result;
     });
 
     this.generals$ = this.store.select('generals');
     this.generalsSub = this.generals$.subscribe(res => {
-      console.log(res.loading);
       this.loading = res.loading;
     });
 

@@ -29,11 +29,7 @@ export class ProductService {
 
   fetchProducts = (criteria) => {
     this.store.dispatch(new GeneralsActions.StartLoading);
-    console.log('Service', criteria);
-
-    const url = `${this.baseUrl}/search?q = ${criteria}`;
-    console.log(url);
-
+    const url = `${this.baseUrl}/search?q=${criteria}`;
     return this.http.get<ResultModel>(url).pipe(
       tap(_ => console.log(`Fetching products`)),
       catchError(error => {
@@ -41,8 +37,8 @@ export class ProductService {
         return this.handleError(error);
       })
     ).subscribe(result => {
-      this.store.dispatch(new ProductActions.SetPathFromRoot(result.path_from_root));
       this.store.dispatch(new ProductActions.FetchProducts(result));
+      this.store.dispatch(new ProductActions.SetPathFromRoot(result.path_from_root));
       this.store.dispatch(new GeneralsActions.EndLoading);
     });
   }
@@ -50,8 +46,6 @@ export class ProductService {
   getProductById = id => {
     this.store.dispatch(new GeneralsActions.StartLoading);
     const url = `${this.baseUrl}/${id}`;
-    console.log(url);
-
     return this.http.get<ResultItemModel>(url).pipe(
       tap(_ => console.log(`Fetching products`)),
       catchError(error => {

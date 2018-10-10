@@ -22,12 +22,8 @@ export const initialState: State = {
 };
 
 export function reducer(state = initialState, action: ProductsActions): State {
-  console.log('ProductReducer', action.type);
-
   switch (action.type) {
     case ProductsActionTypes.FetchProducts:
-      console.log('Aqui');
-
       return {
         ...state,
         result: action.payload,
