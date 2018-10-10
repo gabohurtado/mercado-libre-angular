@@ -1,9 +1,9 @@
 import { Author } from './AuthorModel';
-import { Item } from './ItemModel';
-import { Path } from './PathModel';
+import { ItemModel } from './ItemModel';
+import { PathModel } from './PathModel';
 
 export interface ResultItemModel {
   author: Author;
-  item: Item;
-  path_from_root: Path[];
+  item: ItemModel;
+  path_from_root: PathModel[];
 }

@@ -1,4 +1,7 @@
 import { Action } from '@ngrx/store';
+import { PathModel } from '../../models/PathModel';
+import { ResultItemModel } from 'src/app/models/ResultItemModel';
+import { ResultModel } from 'src/app/models/ResultModel';
 
 export enum ProductsActionTypes {
   FetchProducts = '[Products] Fetch Products',
@@ -12,7 +15,7 @@ export enum ProductsActionTypes {
 
 export class FetchProducts implements Action {
   readonly type = ProductsActionTypes.FetchProducts;
-  constructor(public payload: any) {}
+  constructor(public payload: ResultModel) {}
 }
 
 export class ErrorFetchingProducts implements Action {
@@ -22,7 +25,7 @@ export class ErrorFetchingProducts implements Action {
 
 export class ShowDetails implements Action {
   readonly type = ProductsActionTypes.ShowDetails;
-  constructor(public payload: any) {}
+  constructor(public payload: ResultItemModel) {}
 }
 
 export class ErrorShowingDetails implements Action {
@@ -32,7 +35,7 @@ export class ErrorShowingDetails implements Action {
 
 export class SetPathFromRoot implements Action {
   readonly type = ProductsActionTypes.SetPathFromRoot;
-  constructor(public payload: string[]) {}
+  constructor(public payload: PathModel[]) {}
 }
 
 export class ErrorSetPathFromRoot implements Action {

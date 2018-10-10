@@ -1,24 +1,38 @@
-{{id}}
-
-<div class="row container-details">
+<div *ngIf="loading" class="row container-details-loading">
+    <div class="col-md-9 col-sm-8">
+        <div class="image"></div>
+        <div class="col-md-12 description-container" >
+            <div class="product-description"></div>
+            <p class="text-justify"></p>
+        </div>
+    </div>
+    <div class="details col-md-3 col-sm-4">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
+<div class="row container-details" *ngIf="result?.item">
   <div class="image col-md-9 col-sm-8">
     <span>
-      <!-- <img src="this.props.item.item.picture" alt="this.props.item.item.title" /> -->
+      <img src="{{result.item.picture}}" alt="{{result.item.title}}" />
     </span>
     <div class="col-md-12 description-container">
       <span class="product-description">Descripción del producto</span>
-      <p class="text-justify">"this.props.item.item.description"</p>
+      <p class="text-justify">"{{result.item.description}}"</p>
     </div>
   </div>
   <div class="details col-md-3 col-sm-4">
     <div>
-      <span>"this.props.item.item.condition"</span> - <span>"this.props.item.item.sold_quantity" vendidos</span>
+      <span>"{{result.item.condition}}"</span> - <span>{{result.item.sold_quantity}} vendidos</span>
     </div>
     <div>
-      <h5 class="title">"this.props.item.item.title"</h5>
+      <h5 class="title">"{{result.item.title}}"</h5>
     </div>
     <div>
-      <h3 class="price">"this.props.item.item.price.amount"</h3>
+      <h3 class="price">"{{result.item.price?.amount}}"</h3>
     </div>
     <button type="button" class="btn btn-primary btn-lg btn-block">Comprar</button>
   </div>

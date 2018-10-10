@@ -1,14 +1,46 @@
-{{criteria}}
-
-<!-- <a key=item.id class="no-styles-link">
-  <div class="media" key=item.id>
+<div *ngIf="loading">
+  <div class="media-loading row">
+    <div class="thumbnail col-md-2">
+    </div>
+    <div class="media-body col-md-8">
+      <h5 class="price"></h5>
+      <h5 class="price"></h5>
+      <h5 class="price"></h5>
+    </div>
+    <div class="place col-md-2 col-md-2"></div>
+  </div>
+  <div class="media-loading row">
+    <div class="thumbnail col-md-2">
+    </div>
+    <div class="media-body col-md-8">
+      <h5 class="price"></h5>
+      <h5 class="price"></h5>
+      <h5 class="price"></h5>
+    </div>
+    <div class="place col-md-2 col-md-2"></div>
+  </div>
+  <div class="media-loading row">
+    <div class="thumbnail col-md-2">
+    </div>
+    <div class="media-body col-md-8">
+      <h5 class="price"></h5>
+      <h5 class="price"></h5>
+      <h5 class="price"></h5>
+    </div>
+    <div class="place col-md-2 col-md-2"></div>
+  </div>
+</div>
+<div *ngIf="result?.items">
+  <a *ngFor="let item of result.items" class="no-styles-link" [routerLink]="[ '/item', item.id ]">
+    <div class="media" key=item.id>
       <span class="thumbnail">
-          <img src="item.picture" alt="item.title" />
+        <img src="{{item.picture}}" alt="{{item.title}}" />
       </span>
       <div class="media-body">
-          <h5 class="price">item.price.amount </h5><span [ngClass]="{'shipping': item.free_shipping}"></span>
-          <h4 class="title">item.title</h4>
+        <h5 class="price">${{item.price.amount}} </h5><span [ngClass]="{'shipping': item.free_shipping}"></span>
+        <h4 class="title">{{item.title}}</h4>
       </div>
-      <span class="place col-md-2">item.address_state</span>
-  </div>
-</a> -->
+      <span class="place col-md-2">{{item.address_state}}</span>
+    </div>
+  </a>
+</div>

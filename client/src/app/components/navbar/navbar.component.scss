@@ -4,6 +4,12 @@
 nav {
     background-color: $yellow;
 
+    a {
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
     form {
         button {
             &:after {

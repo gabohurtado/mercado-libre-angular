@@ -23,6 +23,7 @@ import { ProductEffects } from './store/effects/product.effects';
 import { GeneralEffects } from './store/effects/general.effects';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
+import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { HttpModule } from '@angular/http';
     NavbarComponent,
     HomeComponent,
     ProductsComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    BreadcrumbComponent
   ],
   imports: [
   BrowserModule,
@@ -44,7 +46,7 @@ import { HttpModule } from '@angular/http';
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     StoreModule.forFeature('products', fromProducts.reducer),
     StoreModule.forFeature('generals', fromGenerals.reducer),
-    EffectsModule.forRoot([ProductEffects, GeneralEffects]),
+    // EffectsModule.forRoot([ProductEffects, GeneralEffects]),
   ],
   providers: [],
   bootstrap: [AppComponent]

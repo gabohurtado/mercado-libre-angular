@@ -4,12 +4,10 @@ import { GeneralsActionTypes, GeneralsActions } from '../actions/generals.action
 
 export interface State {
   loading: boolean;
-  path_from_root: string[];
 }
 
 export const initialState: State = {
   loading: false,
-  path_from_root: []
 };
 
 export function reducer(state = initialState, action: GeneralsActions): State {

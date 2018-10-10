@@ -7,15 +7,24 @@ import baseUrl from '../config/config';
 import { ResultModel } from '../models/ResultModel';
 import { ResultItemModel } from '../models/ResultItemModel';
 
+// Redux
+import { Store, select } from '@ngrx/store';
+import { State } from '../store/reducers/index';
+import * as GeneralsActions from '../store/actions/generals.actions';
+import * as fromGenerals from '../store/reducers/generals.reducer';
+import * as fromProducts from '../store/reducers/products.reducer';
+import * as ProductActions from '../store/actions/products.actions';
+
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private store: Store<State>) { }
 
   fetchProducts = (criteria) => {
+    this.store.dispatch(new GeneralsActions.StartLoading);
     console.log('Service', criteria);
 
     const url = `${baseUrl.url_products}/search?q=${criteria}`;
@@ -23,21 +32,37 @@ export class ProductService {
 
     return this.http.get<ResultModel>(url).pipe(
       tap(_ => console.log(`Fetching products`)),
-      catchError(this.handleError)
-    );
+      catchError(error => {
+        this.store.dispatch(new ProductActions.ErrorFetchingProducts(error.message));
+        return this.handleError(error);
+      })
+    ).subscribe(result => {
+      this.store.dispatch(new ProductActions.SetPathFromRoot(result.path_from_root));
+      this.store.dispatch(new ProductActions.FetchProducts(result));
+      this.store.dispatch(new GeneralsActions.EndLoading);
+    });
   }
 
   getProductById = id => {
+    this.store.dispatch(new GeneralsActions.StartLoading);
     const url = `${baseUrl.url_products}/${id}`;
     console.log(url);
 
     return this.http.get<ResultItemModel>(url).pipe(
       tap(_ => console.log(`Fetching products`)),
-      catchError(this.handleError)
-    );
+      catchError( error => {
+        this.store.dispatch(new ProductActions.ErrorShowingDetails(error.message));
+        return this.handleError(error);
+      })
+      ).subscribe(result => {
+        this.store.dispatch(new ProductActions.SetPathFromRoot(result.path_from_root));
+        this.store.dispatch(new ProductActions.ShowDetails(result));
+        this.store.dispatch(new GeneralsActions.EndLoading);
+      });
   }
 
   private handleError(error: HttpErrorResponse) {
+    this.store.dispatch(new GeneralsActions.EndLoading);
     if (error.status === 401) {
       return throwError('Credenciales incorrectas.');
     } else if (error.error instanceof ErrorEvent) {

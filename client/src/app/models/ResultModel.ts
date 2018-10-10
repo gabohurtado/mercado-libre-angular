@@ -1,10 +1,10 @@
 import { Author } from './AuthorModel';
-import { Item } from './ItemModel';
-import { Path } from './PathModel';
+import { ItemModel } from './ItemModel';
+import { PathModel } from './PathModel';
 
 export interface ResultModel {
   author: Author;
   categories: string[];
-  items: Item[];
-  path_from_root: Path[];
+  items: ItemModel[];
+  path_from_root: PathModel[];
 }

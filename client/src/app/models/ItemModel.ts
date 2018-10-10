@@ -1,6 +1,7 @@
 import { Price } from './PriceModel';
+import { PathModel } from './PathModel';
 
-export interface Item {
+export interface ItemModel {
     id: string;
     title: string;
     price: Price;
@@ -9,6 +10,6 @@ export interface Item {
     free_shipping: boolean;
     sold_quantity: number;
     address_state: string;
-    path_from_root: string;
+    path_from_root: PathModel[];
     description?: string;
 }

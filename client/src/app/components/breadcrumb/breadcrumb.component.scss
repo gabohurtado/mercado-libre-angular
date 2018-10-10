@@ -1,0 +1,17 @@
+// My vars
+@import '../../../assets/scss/_vars';
+
+nav {
+    nav.breadcrumb a,
+    li.breadcrumb-item {
+        @include text-size(14);
+    }
+
+    ol.breadcrumb {
+        padding: $space1 !important;
+    }
+
+    .breadcrumb {
+        margin-bottom: 0;
+    }
+}

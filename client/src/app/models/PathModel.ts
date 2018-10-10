@@ -1,4 +1,4 @@
-export interface Path {
+export interface PathModel {
     id: string;
     name: string;
 }

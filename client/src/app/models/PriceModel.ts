@@ -1,4 +1,5 @@
 export interface Price {
     currency: string;
-    amouunt: number;
+    amount: number;
+    decimals: number;
 }

@@ -1,19 +1,22 @@
-import { Action } from '@ngrx/store';
+import { Action, createFeatureSelector, createSelector } from '@ngrx/store';
 import {
   ProductsActions,
   ProductsActionTypes
 } from '../actions/products.actions';
+import { ResultModel } from 'src/app/models/ResultModel';
+import { PathModel } from '../../models/PathModel';
+import { ResultItemModel } from 'src/app/models/ResultItemModel';
 
 export interface State {
-  result: Object;
-  item: Object;
-  path_from_root: string[];
+  result: ResultModel;
+  item: ResultItemModel;
+  path_from_root: PathModel[];
   error: string;
 }
 
 export const initialState: State = {
-  result: {},
-  item: {},
+  result: null,
+  item: null,
   path_from_root: [],
   error: ''
 };
@@ -67,3 +70,10 @@ export function reducer(state = initialState, action: ProductsActions): State {
       return state;
   }
 }
+
+export const selectProductState = createFeatureSelector<State>('products');
+
+export const getResult = createSelector(
+  selectProductState,
+  (state: State) => state.result
+);
