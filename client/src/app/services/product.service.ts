@@ -1,6 +1,6 @@
 import { Injectable, Optional, Inject } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { throwError } from 'rxjs';
+import { throwError, Observable, of } from 'rxjs';
 import { tap, catchError } from 'rxjs/internal/operators';
 
 import baseUrl from '../config/config';
@@ -54,10 +54,7 @@ export class ProductService {
 
     return this.http.get<ResultItemModel>(url).pipe(
       tap(_ => console.log(`Fetching products`)),
-      catchError(error => {
-        this.store.dispatch(new ProductActions.ErrorShowingDetails(error.message));
-        return this.handleError(error);
-      })
+      catchError<any>(this.handleError('getProduct'))
     ).subscribe(result => {
       this.store.dispatch(new ProductActions.SetPathFromRoot(result.path_from_root));
       this.store.dispatch(new ProductActions.ShowDetails(result));
@@ -65,23 +62,25 @@ export class ProductService {
     });
   }
 
-  private handleError(error: HttpErrorResponse) {
-    this.store.dispatch(new GeneralsActions.EndLoading);
-    if (error.status === 401) {
-      return throwError('Credenciales incorrectas.');
-    } else if (error.error instanceof ErrorEvent) {
-      // A client-side or network error occurred. Handle it accordingly.
-      console.error('An error occurred:', error.error.message);
-    } else {
-      // The backend returned an unsuccessful response code.
-      // The response body may contain clues as to what went wrong,
-      console.error(
-        `Backend returned code ${error.status}, ` + `body was: ${error.error}`
-      );
-    }
-    // return an observable with a user-facing error message
-    // extender
-    return throwError('Error consultando servidor.');
+  /**
+   * Handle Http operation that failed.
+   * Let the app continue.
+   * @param operation - name of the operation that failed
+   * @param result - optional value to return as the observable result
+   */
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.log('Erroooooooooooooooooooorrrrr', error);
+
+      this.store.dispatch(new ProductActions.ErrorShowingDetails(error.message));
+      this.store.dispatch(new GeneralsActions.EndLoading);
+
+      // TODO: send the error to remote logging infrastructure
+      console.error(error); // log to console instead
+
+      // Let the app keep running by returning an empty result.
+      return of(result as T);
+    };
   }
 
 }
